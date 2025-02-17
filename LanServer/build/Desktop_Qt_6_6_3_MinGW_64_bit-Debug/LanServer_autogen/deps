@@ -1,0 +1,161 @@
+LanServer_autogen/timestamp: \
+	C:/Program\ Files/CMake/share/cmake-3.31/Modules/CMakeCXXInformation.cmake \
+	C:/Program\ Files/CMake/share/cmake-3.31/Modules/CMakeCheckCompilerFlagCommonPatterns.cmake \
+	C:/Program\ Files/CMake/share/cmake-3.31/Modules/CMakeCommonLanguageInclude.cmake \
+	C:/Program\ Files/CMake/share/cmake-3.31/Modules/CMakeFindDependencyMacro.cmake \
+	C:/Program\ Files/CMake/share/cmake-3.31/Modules/CMakeGenericSystem.cmake \
+	C:/Program\ Files/CMake/share/cmake-3.31/Modules/CMakeInitializeConfigs.cmake \
+	C:/Program\ Files/CMake/share/cmake-3.31/Modules/CMakeLanguageInformation.cmake \
+	C:/Program\ Files/CMake/share/cmake-3.31/Modules/CMakeRCInformation.cmake \
+	C:/Program\ Files/CMake/share/cmake-3.31/Modules/CMakeSystemSpecificInformation.cmake \
+	C:/Program\ Files/CMake/share/cmake-3.31/Modules/CMakeSystemSpecificInitialize.cmake \
+	C:/Program\ Files/CMake/share/cmake-3.31/Modules/CheckCXXCompilerFlag.cmake \
+	C:/Program\ Files/CMake/share/cmake-3.31/Modules/CheckCXXSourceCompiles.cmake \
+	C:/Program\ Files/CMake/share/cmake-3.31/Modules/CheckIncludeFileCXX.cmake \
+	C:/Program\ Files/CMake/share/cmake-3.31/Modules/CheckLibraryExists.cmake \
+	C:/Program\ Files/CMake/share/cmake-3.31/Modules/Compiler/CMakeCommonCompilerMacros.cmake \
+	C:/Program\ Files/CMake/share/cmake-3.31/Modules/Compiler/GNU-CXX.cmake \
+	C:/Program\ Files/CMake/share/cmake-3.31/Modules/Compiler/GNU.cmake \
+	C:/Program\ Files/CMake/share/cmake-3.31/Modules/FindPackageHandleStandardArgs.cmake \
+	C:/Program\ Files/CMake/share/cmake-3.31/Modules/FindPackageMessage.cmake \
+	C:/Program\ Files/CMake/share/cmake-3.31/Modules/FindThreads.cmake \
+	C:/Program\ Files/CMake/share/cmake-3.31/Modules/GNUInstallDirs.cmake \
+	C:/Program\ Files/CMake/share/cmake-3.31/Modules/Internal/CMakeCXXLinkerInformation.cmake \
+	C:/Program\ Files/CMake/share/cmake-3.31/Modules/Internal/CMakeCommonLinkerInformation.cmake \
+	C:/Program\ Files/CMake/share/cmake-3.31/Modules/Internal/CheckCompilerFlag.cmake \
+	C:/Program\ Files/CMake/share/cmake-3.31/Modules/Internal/CheckFlagCommonConfig.cmake \
+	C:/Program\ Files/CMake/share/cmake-3.31/Modules/Internal/CheckSourceCompiles.cmake \
+	C:/Program\ Files/CMake/share/cmake-3.31/Modules/Platform/Linker/GNU.cmake \
+	C:/Program\ Files/CMake/share/cmake-3.31/Modules/Platform/Linker/Windows-CXX.cmake \
+	C:/Program\ Files/CMake/share/cmake-3.31/Modules/Platform/Linker/Windows-GNU-CXX.cmake \
+	C:/Program\ Files/CMake/share/cmake-3.31/Modules/Platform/Linker/Windows-GNU.cmake \
+	C:/Program\ Files/CMake/share/cmake-3.31/Modules/Platform/Windows-GNU-CXX-ABI.cmake \
+	C:/Program\ Files/CMake/share/cmake-3.31/Modules/Platform/Windows-GNU-CXX.cmake \
+	C:/Program\ Files/CMake/share/cmake-3.31/Modules/Platform/Windows-GNU.cmake \
+	C:/Program\ Files/CMake/share/cmake-3.31/Modules/Platform/Windows-Initialize.cmake \
+	C:/Program\ Files/CMake/share/cmake-3.31/Modules/Platform/Windows-windres.cmake \
+	C:/Program\ Files/CMake/share/cmake-3.31/Modules/Platform/Windows.cmake \
+	C:/Program\ Files/CMake/share/cmake-3.31/Modules/Platform/WindowsPaths.cmake \
+	D:/E005/1125/LanServer/CMakeLists.txt \
+	D:/E005/1125/LanServer/build/Desktop_Qt_6_6_3_MinGW_64_bit-Debug/.qtc/package-manager/auto-setup.cmake \
+	D:/E005/1125/LanServer/build/Desktop_Qt_6_6_3_MinGW_64_bit-Debug/CMakeFiles/3.31.1/CMakeCXXCompiler.cmake \
+	D:/E005/1125/LanServer/build/Desktop_Qt_6_6_3_MinGW_64_bit-Debug/CMakeFiles/3.31.1/CMakeRCCompiler.cmake \
+	D:/E005/1125/LanServer/build/Desktop_Qt_6_6_3_MinGW_64_bit-Debug/CMakeFiles/3.31.1/CMakeSystem.cmake \
+	D:/E005/1125/LanServer/main.cpp \
+	E:/Qt/6.5.3/mingw_64/lib/cmake/Qt6/FindWrapAtomic.cmake \
+	E:/Qt/6.5.3/mingw_64/lib/cmake/Qt6/Qt6Config.cmake \
+	E:/Qt/6.5.3/mingw_64/lib/cmake/Qt6/Qt6ConfigExtras.cmake \
+	E:/Qt/6.5.3/mingw_64/lib/cmake/Qt6/Qt6ConfigVersion.cmake \
+	E:/Qt/6.5.3/mingw_64/lib/cmake/Qt6/Qt6ConfigVersionImpl.cmake \
+	E:/Qt/6.5.3/mingw_64/lib/cmake/Qt6/Qt6Dependencies.cmake \
+	E:/Qt/6.5.3/mingw_64/lib/cmake/Qt6/Qt6Targets.cmake \
+	E:/Qt/6.5.3/mingw_64/lib/cmake/Qt6/Qt6VersionlessTargets.cmake \
+	E:/Qt/6.5.3/mingw_64/lib/cmake/Qt6/QtFeature.cmake \
+	E:/Qt/6.5.3/mingw_64/lib/cmake/Qt6/QtFeatureCommon.cmake \
+	E:/Qt/6.5.3/mingw_64/lib/cmake/Qt6/QtPublicAppleHelpers.cmake \
+	E:/Qt/6.5.3/mingw_64/lib/cmake/Qt6/QtPublicCMakeHelpers.cmake \
+	E:/Qt/6.5.3/mingw_64/lib/cmake/Qt6/QtPublicCMakeVersionHelpers.cmake \
+	E:/Qt/6.5.3/mingw_64/lib/cmake/Qt6/QtPublicDependencyHelpers.cmake \
+	E:/Qt/6.5.3/mingw_64/lib/cmake/Qt6/QtPublicFinalizerHelpers.cmake \
+	E:/Qt/6.5.3/mingw_64/lib/cmake/Qt6/QtPublicFindPackageHelpers.cmake \
+	E:/Qt/6.5.3/mingw_64/lib/cmake/Qt6/QtPublicPluginHelpers.cmake \
+	E:/Qt/6.5.3/mingw_64/lib/cmake/Qt6/QtPublicTargetHelpers.cmake \
+	E:/Qt/6.5.3/mingw_64/lib/cmake/Qt6/QtPublicTestHelpers.cmake \
+	E:/Qt/6.5.3/mingw_64/lib/cmake/Qt6/QtPublicToolHelpers.cmake \
+	E:/Qt/6.5.3/mingw_64/lib/cmake/Qt6/QtPublicWalkLibsHelpers.cmake \
+	E:/Qt/6.5.3/mingw_64/lib/cmake/Qt6Core/Qt6CoreAdditionalTargetInfo.cmake \
+	E:/Qt/6.5.3/mingw_64/lib/cmake/Qt6Core/Qt6CoreConfig.cmake \
+	E:/Qt/6.5.3/mingw_64/lib/cmake/Qt6Core/Qt6CoreConfigExtras.cmake \
+	E:/Qt/6.5.3/mingw_64/lib/cmake/Qt6Core/Qt6CoreConfigVersion.cmake \
+	E:/Qt/6.5.3/mingw_64/lib/cmake/Qt6Core/Qt6CoreConfigVersionImpl.cmake \
+	E:/Qt/6.5.3/mingw_64/lib/cmake/Qt6Core/Qt6CoreDependencies.cmake \
+	E:/Qt/6.5.3/mingw_64/lib/cmake/Qt6Core/Qt6CoreMacros.cmake \
+	E:/Qt/6.5.3/mingw_64/lib/cmake/Qt6Core/Qt6CoreTargets-relwithdebinfo.cmake \
+	E:/Qt/6.5.3/mingw_64/lib/cmake/Qt6Core/Qt6CoreTargets.cmake \
+	E:/Qt/6.5.3/mingw_64/lib/cmake/Qt6Core/Qt6CoreVersionlessTargets.cmake \
+	E:/Qt/6.5.3/mingw_64/lib/cmake/Qt6Core/QtInstallPaths.cmake \
+	E:/Qt/6.5.3/mingw_64/lib/cmake/Qt6CoreTools/Qt6CoreToolsAdditionalTargetInfo.cmake \
+	E:/Qt/6.5.3/mingw_64/lib/cmake/Qt6CoreTools/Qt6CoreToolsConfig.cmake \
+	E:/Qt/6.5.3/mingw_64/lib/cmake/Qt6CoreTools/Qt6CoreToolsConfigVersion.cmake \
+	E:/Qt/6.5.3/mingw_64/lib/cmake/Qt6CoreTools/Qt6CoreToolsConfigVersionImpl.cmake \
+	E:/Qt/6.5.3/mingw_64/lib/cmake/Qt6CoreTools/Qt6CoreToolsDependencies.cmake \
+	E:/Qt/6.5.3/mingw_64/lib/cmake/Qt6CoreTools/Qt6CoreToolsTargets-relwithdebinfo.cmake \
+	E:/Qt/6.5.3/mingw_64/lib/cmake/Qt6CoreTools/Qt6CoreToolsTargets.cmake \
+	E:/Qt/6.5.3/mingw_64/lib/cmake/Qt6CoreTools/Qt6CoreToolsVersionlessTargets.cmake \
+	E:/Qt/6.5.3/mingw_64/lib/cmake/Qt6EntryPointPrivate/Qt6EntryPointMinGW32Target.cmake \
+	E:/Qt/6.5.3/mingw_64/lib/cmake/Qt6EntryPointPrivate/Qt6EntryPointPrivateAdditionalTargetInfo.cmake \
+	E:/Qt/6.5.3/mingw_64/lib/cmake/Qt6EntryPointPrivate/Qt6EntryPointPrivateConfig.cmake \
+	E:/Qt/6.5.3/mingw_64/lib/cmake/Qt6EntryPointPrivate/Qt6EntryPointPrivateConfigVersion.cmake \
+	E:/Qt/6.5.3/mingw_64/lib/cmake/Qt6EntryPointPrivate/Qt6EntryPointPrivateConfigVersionImpl.cmake \
+	E:/Qt/6.5.3/mingw_64/lib/cmake/Qt6EntryPointPrivate/Qt6EntryPointPrivateTargets-relwithdebinfo.cmake \
+	E:/Qt/6.5.3/mingw_64/lib/cmake/Qt6EntryPointPrivate/Qt6EntryPointPrivateTargets.cmake \
+	E:/Qt/6.5.3/mingw_64/lib/cmake/Qt6EntryPointPrivate/Qt6EntryPointPrivateVersionlessTargets.cmake \
+	E:/Qt/6.5.3/mingw_64/lib/cmake/Qt6HttpServer/Qt6HttpServerAdditionalTargetInfo.cmake \
+	E:/Qt/6.5.3/mingw_64/lib/cmake/Qt6HttpServer/Qt6HttpServerConfig.cmake \
+	E:/Qt/6.5.3/mingw_64/lib/cmake/Qt6HttpServer/Qt6HttpServerConfigVersion.cmake \
+	E:/Qt/6.5.3/mingw_64/lib/cmake/Qt6HttpServer/Qt6HttpServerConfigVersionImpl.cmake \
+	E:/Qt/6.5.3/mingw_64/lib/cmake/Qt6HttpServer/Qt6HttpServerDependencies.cmake \
+	E:/Qt/6.5.3/mingw_64/lib/cmake/Qt6HttpServer/Qt6HttpServerTargets-relwithdebinfo.cmake \
+	E:/Qt/6.5.3/mingw_64/lib/cmake/Qt6HttpServer/Qt6HttpServerTargets.cmake \
+	E:/Qt/6.5.3/mingw_64/lib/cmake/Qt6HttpServer/Qt6HttpServerVersionlessTargets.cmake \
+	E:/Qt/6.5.3/mingw_64/lib/cmake/Qt6Network/Qt6NetworkAdditionalTargetInfo.cmake \
+	E:/Qt/6.5.3/mingw_64/lib/cmake/Qt6Network/Qt6NetworkConfig.cmake \
+	E:/Qt/6.5.3/mingw_64/lib/cmake/Qt6Network/Qt6NetworkConfigVersion.cmake \
+	E:/Qt/6.5.3/mingw_64/lib/cmake/Qt6Network/Qt6NetworkConfigVersionImpl.cmake \
+	E:/Qt/6.5.3/mingw_64/lib/cmake/Qt6Network/Qt6NetworkDependencies.cmake \
+	E:/Qt/6.5.3/mingw_64/lib/cmake/Qt6Network/Qt6NetworkPlugins.cmake \
+	E:/Qt/6.5.3/mingw_64/lib/cmake/Qt6Network/Qt6NetworkTargets-relwithdebinfo.cmake \
+	E:/Qt/6.5.3/mingw_64/lib/cmake/Qt6Network/Qt6NetworkTargets.cmake \
+	E:/Qt/6.5.3/mingw_64/lib/cmake/Qt6Network/Qt6NetworkVersionlessTargets.cmake \
+	E:/Qt/6.5.3/mingw_64/lib/cmake/Qt6Network/Qt6QNLMNIPluginAdditionalTargetInfo.cmake \
+	E:/Qt/6.5.3/mingw_64/lib/cmake/Qt6Network/Qt6QNLMNIPluginConfig.cmake \
+	E:/Qt/6.5.3/mingw_64/lib/cmake/Qt6Network/Qt6QNLMNIPluginTargets-relwithdebinfo.cmake \
+	E:/Qt/6.5.3/mingw_64/lib/cmake/Qt6Network/Qt6QNLMNIPluginTargets.cmake \
+	E:/Qt/6.5.3/mingw_64/lib/cmake/Qt6Network/Qt6QSchannelBackendPluginAdditionalTargetInfo.cmake \
+	E:/Qt/6.5.3/mingw_64/lib/cmake/Qt6Network/Qt6QSchannelBackendPluginConfig.cmake \
+	E:/Qt/6.5.3/mingw_64/lib/cmake/Qt6Network/Qt6QSchannelBackendPluginTargets-relwithdebinfo.cmake \
+	E:/Qt/6.5.3/mingw_64/lib/cmake/Qt6Network/Qt6QSchannelBackendPluginTargets.cmake \
+	E:/Qt/6.5.3/mingw_64/lib/cmake/Qt6Network/Qt6QTlsBackendCertOnlyPluginAdditionalTargetInfo.cmake \
+	E:/Qt/6.5.3/mingw_64/lib/cmake/Qt6Network/Qt6QTlsBackendCertOnlyPluginConfig.cmake \
+	E:/Qt/6.5.3/mingw_64/lib/cmake/Qt6Network/Qt6QTlsBackendCertOnlyPluginTargets-relwithdebinfo.cmake \
+	E:/Qt/6.5.3/mingw_64/lib/cmake/Qt6Network/Qt6QTlsBackendCertOnlyPluginTargets.cmake \
+	E:/Qt/6.5.3/mingw_64/lib/cmake/Qt6Network/Qt6QTlsBackendOpenSSLPluginAdditionalTargetInfo.cmake \
+	E:/Qt/6.5.3/mingw_64/lib/cmake/Qt6Network/Qt6QTlsBackendOpenSSLPluginConfig.cmake \
+	E:/Qt/6.5.3/mingw_64/lib/cmake/Qt6Network/Qt6QTlsBackendOpenSSLPluginTargets-relwithdebinfo.cmake \
+	E:/Qt/6.5.3/mingw_64/lib/cmake/Qt6Network/Qt6QTlsBackendOpenSSLPluginTargets.cmake \
+	E:/Qt/6.5.3/mingw_64/lib/cmake/Qt6Sql/Qt6QODBCDriverPluginAdditionalTargetInfo.cmake \
+	E:/Qt/6.5.3/mingw_64/lib/cmake/Qt6Sql/Qt6QODBCDriverPluginConfig.cmake \
+	E:/Qt/6.5.3/mingw_64/lib/cmake/Qt6Sql/Qt6QODBCDriverPluginTargets-relwithdebinfo.cmake \
+	E:/Qt/6.5.3/mingw_64/lib/cmake/Qt6Sql/Qt6QODBCDriverPluginTargets.cmake \
+	E:/Qt/6.5.3/mingw_64/lib/cmake/Qt6Sql/Qt6QPSQLDriverPluginAdditionalTargetInfo.cmake \
+	E:/Qt/6.5.3/mingw_64/lib/cmake/Qt6Sql/Qt6QPSQLDriverPluginConfig.cmake \
+	E:/Qt/6.5.3/mingw_64/lib/cmake/Qt6Sql/Qt6QPSQLDriverPluginTargets-relwithdebinfo.cmake \
+	E:/Qt/6.5.3/mingw_64/lib/cmake/Qt6Sql/Qt6QPSQLDriverPluginTargets.cmake \
+	E:/Qt/6.5.3/mingw_64/lib/cmake/Qt6Sql/Qt6QSQLiteDriverPluginAdditionalTargetInfo.cmake \
+	E:/Qt/6.5.3/mingw_64/lib/cmake/Qt6Sql/Qt6QSQLiteDriverPluginConfig.cmake \
+	E:/Qt/6.5.3/mingw_64/lib/cmake/Qt6Sql/Qt6QSQLiteDriverPluginTargets-relwithdebinfo.cmake \
+	E:/Qt/6.5.3/mingw_64/lib/cmake/Qt6Sql/Qt6QSQLiteDriverPluginTargets.cmake \
+	E:/Qt/6.5.3/mingw_64/lib/cmake/Qt6Sql/Qt6SqlAdditionalTargetInfo.cmake \
+	E:/Qt/6.5.3/mingw_64/lib/cmake/Qt6Sql/Qt6SqlConfig.cmake \
+	E:/Qt/6.5.3/mingw_64/lib/cmake/Qt6Sql/Qt6SqlConfigVersion.cmake \
+	E:/Qt/6.5.3/mingw_64/lib/cmake/Qt6Sql/Qt6SqlConfigVersionImpl.cmake \
+	E:/Qt/6.5.3/mingw_64/lib/cmake/Qt6Sql/Qt6SqlDependencies.cmake \
+	E:/Qt/6.5.3/mingw_64/lib/cmake/Qt6Sql/Qt6SqlPlugins.cmake \
+	E:/Qt/6.5.3/mingw_64/lib/cmake/Qt6Sql/Qt6SqlTargets-relwithdebinfo.cmake \
+	E:/Qt/6.5.3/mingw_64/lib/cmake/Qt6Sql/Qt6SqlTargets.cmake \
+	E:/Qt/6.5.3/mingw_64/lib/cmake/Qt6Sql/Qt6SqlVersionlessTargets.cmake \
+	E:/Qt/6.5.3/mingw_64/lib/cmake/Qt6WebSockets/Qt6WebSocketsAdditionalTargetInfo.cmake \
+	E:/Qt/6.5.3/mingw_64/lib/cmake/Qt6WebSockets/Qt6WebSocketsConfig.cmake \
+	E:/Qt/6.5.3/mingw_64/lib/cmake/Qt6WebSockets/Qt6WebSocketsConfigVersion.cmake \
+	E:/Qt/6.5.3/mingw_64/lib/cmake/Qt6WebSockets/Qt6WebSocketsConfigVersionImpl.cmake \
+	E:/Qt/6.5.3/mingw_64/lib/cmake/Qt6WebSockets/Qt6WebSocketsDependencies.cmake \
+	E:/Qt/6.5.3/mingw_64/lib/cmake/Qt6WebSockets/Qt6WebSocketsTargets-relwithdebinfo.cmake \
+	E:/Qt/6.5.3/mingw_64/lib/cmake/Qt6WebSockets/Qt6WebSocketsTargets.cmake \
+	E:/Qt/6.5.3/mingw_64/lib/cmake/Qt6WebSockets/Qt6WebSocketsVersionlessTargets.cmake \
+	E:/Qt/6.5.3/mingw_64/lib/cmake/Qt6ZlibPrivate/Qt6ZlibPrivateAdditionalTargetInfo.cmake \
+	E:/Qt/6.5.3/mingw_64/lib/cmake/Qt6ZlibPrivate/Qt6ZlibPrivateConfig.cmake \
+	E:/Qt/6.5.3/mingw_64/lib/cmake/Qt6ZlibPrivate/Qt6ZlibPrivateConfigVersion.cmake \
+	E:/Qt/6.5.3/mingw_64/lib/cmake/Qt6ZlibPrivate/Qt6ZlibPrivateConfigVersionImpl.cmake \
+	E:/Qt/6.5.3/mingw_64/lib/cmake/Qt6ZlibPrivate/Qt6ZlibPrivateTargets.cmake \
+	E:/Qt/6.5.3/mingw_64/lib/cmake/Qt6ZlibPrivate/Qt6ZlibPrivateVersionlessTargets.cmake \
+	C:/Program\ Files/CMake/bin/cmake.exe

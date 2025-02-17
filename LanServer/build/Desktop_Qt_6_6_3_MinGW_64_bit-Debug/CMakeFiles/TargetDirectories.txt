@@ -1,0 +1,8 @@
+D:/E005/1125/LanServer/build/Desktop_Qt_6_6_3_MinGW_64_bit-Debug/CMakeFiles/LanServer.dir
+D:/E005/1125/LanServer/build/Desktop_Qt_6_6_3_MinGW_64_bit-Debug/CMakeFiles/edit_cache.dir
+D:/E005/1125/LanServer/build/Desktop_Qt_6_6_3_MinGW_64_bit-Debug/CMakeFiles/rebuild_cache.dir
+D:/E005/1125/LanServer/build/Desktop_Qt_6_6_3_MinGW_64_bit-Debug/CMakeFiles/list_install_components.dir
+D:/E005/1125/LanServer/build/Desktop_Qt_6_6_3_MinGW_64_bit-Debug/CMakeFiles/install.dir
+D:/E005/1125/LanServer/build/Desktop_Qt_6_6_3_MinGW_64_bit-Debug/CMakeFiles/install/local.dir
+D:/E005/1125/LanServer/build/Desktop_Qt_6_6_3_MinGW_64_bit-Debug/CMakeFiles/install/strip.dir
+D:/E005/1125/LanServer/build/Desktop_Qt_6_6_3_MinGW_64_bit-Debug/CMakeFiles/LanServer_autogen.dir
