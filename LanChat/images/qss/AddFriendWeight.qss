@@ -1,0 +1,32 @@
+QWidget#AddFriend {
+    background-color: rgb(245, 245, 245);
+}
+
+QHBoxLayout#horizontalLayout {
+    border: none;
+    border-bottom: 1PX solid rgb(229, 229, 229);
+}
+
+QLabel#label_Name {
+    font-size: 16px;
+    font-weight: bold;
+}
+
+QLabel#label_Region {
+    font-size: 12px;
+    color: grey;
+}
+
+QPushButton#pushButton_AddFriend {
+    color: white;
+    border: none;
+    border-radius: 10px;
+    background-color: rgb(0, 102, 204);
+}
+
+QPushButton#pushButton_AddFriend:hover {
+    color: white;
+    border: none;
+    border-radius: 10px;
+    background-color: rgb(20, 114, 208);
+}

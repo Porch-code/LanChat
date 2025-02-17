@@ -1,0 +1,18 @@
+<RCC>
+    <qresource prefix="/new/prefix1">
+        <file>images/bold.png</file>
+        <file>images/clear.png</file>
+        <file>images/color.png</file>
+        <file>images/save.png</file>
+        <file>images/send.png</file>
+        <file>images/logo.ico</file>
+        <file>images/italic.png</file>
+        <file>images/underline.png</file>
+        <file>images/chose.png</file>
+        <file>images/close.png</file>
+        <file>images/unchose.png</file>
+        <file>images/LoginWeight.qss</file>
+        <file>images/bg.png</file>
+        <file>images/bg_2.png</file>
+    </qresource>
+</RCC>

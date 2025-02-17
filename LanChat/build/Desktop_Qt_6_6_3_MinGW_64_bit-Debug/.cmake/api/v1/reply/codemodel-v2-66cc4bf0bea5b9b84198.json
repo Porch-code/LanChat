@@ -1,0 +1,70 @@
+{
+	"configurations" : 
+	[
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"hasInstallRule" : true,
+					"jsonFile" : "directory-.-Debug-ab90535d781e97d5321e.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.16"
+					},
+					"projectIndex" : 0,
+					"source" : ".",
+					"targetIndexes" : 
+					[
+						0,
+						1
+					]
+				}
+			],
+			"name" : "Debug",
+			"projects" : 
+			[
+				{
+					"directoryIndexes" : 
+					[
+						0
+					],
+					"name" : "LanChat",
+					"targetIndexes" : 
+					[
+						0,
+						1
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 0,
+					"id" : "LanChat::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-LanChat-Debug-d0ef8c3cb2b101610852.json",
+					"name" : "LanChat",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "LanChat_autogen::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-LanChat_autogen-Debug-be39cb3e2f60c4d291ca.json",
+					"name" : "LanChat_autogen",
+					"projectIndex" : 0
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "D:/E005/1125/LanChat/build/Desktop_Qt_6_6_3_MinGW_64_bit-Debug",
+		"source" : "D:/E005/1125/LanChat"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 7
+	}
+}

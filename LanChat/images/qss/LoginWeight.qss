@@ -1,0 +1,111 @@
+QLabel#Login {
+    background-image: url(":/new/prefix1/images/bg_9.png");
+}
+
+QLabel#Signup {
+    background-image: url(":/new/prefix1/images/bg_9.png");
+}
+
+QPushButton#pushButton_Close {
+    border: none;
+}
+
+QPushButton#pushButton_Close:hover {
+    border: none;
+    background-color: red;
+}
+
+QPushButton#pushButton_Reduce {
+    border: none;
+    /* image: url(":/new/prefix1/images/reduce.png"); */
+}
+
+QPushButton#pushButton_Reduce:hover {
+    border: none;
+    background-color: rgb(232, 232, 232);
+}
+
+QPushButton#pushButton_increase {
+    border: none;
+}
+
+
+QLineEdit#lineEdit_UserName,
+QLineEdit#lineEdit_Password,
+QLineEdit#lineEdit_Password_2 {
+    border: 1px solid gray;
+    border-radius: 10px;
+    font-size: 16px;
+    font-family: 黑体;
+    color: gray;
+    background-color: rgba(247, 247, 240, 0.1);
+}
+
+QCheckBox#checkBox_Authorize {
+    border: none;
+    color: gray;
+    outline: none;
+}
+
+QCheckBox#checkBox_Authorize::indicator:enabled:unchecked {
+    width: 24px;
+    height: 24px;
+    image: url(":/new/prefix1/images/unchose.png");
+}
+
+QCheckBox#checkBox_Authorize::indicator:enabled:checked {
+    width: 24px;
+    height: 24px;
+    image: url(":/new/prefix1/images/chose.png");
+}
+
+QPushButton#pushButton_Login {
+    color: white;
+    font-weight: bold;
+    border: none;
+    border-radius: 10px;
+    background-color: rgb(0, 102, 204);
+}
+
+QPushButton#pushButton_Login:hover {
+    background-color: rgb(20, 114, 208);
+}
+
+QPushButton#pushButton_Login:disabled {
+    background-color: rgb(27, 48, 101);
+    color: rgb(71, 78, 107);
+}
+
+QPushButton#pushButton_Register {
+    color: white;
+    font-weight: bold;
+    border: none;
+    border-radius: 10px;
+    background-color: rgb(0, 102, 204);
+}
+
+QPushButton#pushButton_Register:hover {
+    background-color: rgb(20, 114, 208);
+}
+
+QPushButton#pushButton_Register:disabled {
+    background-color: rgb(27, 48, 101);
+    color: rgb(71, 78, 107);
+}
+
+QPushButton#pushButton_Return {
+    color: white;
+    font-weight: bold;
+    border: none;
+    border-radius: 10px;
+    background-color: rgb(0, 102, 204);
+}
+
+QPushButton#pushButton_Return:hover {
+    background-color: rgb(20, 114, 208);
+}
+
+QPushButton#pushButton_Return:disabled {
+    background-color: rgb(27, 48, 101);
+    color: rgb(71, 78, 107);
+}

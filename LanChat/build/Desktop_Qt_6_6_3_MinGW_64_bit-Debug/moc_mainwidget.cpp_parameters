@@ -1,0 +1,4 @@
+-DWIN32
+-o
+D:/E005/1125/LanChat/build/Desktop_Qt_6_6_3_MinGW_64_bit-Debug/moc_mainwidget.cpp
+D:/E005/1125/LanChat/mainwidget.h

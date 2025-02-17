@@ -1,0 +1,221 @@
+QLabel#MainWidget {
+    background: rgb(229, 229, 229);
+}
+
+QWidget#FriendMessageBar {
+    background-color: rgb(245, 245, 245);
+    border-bottom: 1px solid rgb(229, 229, 229)
+}
+
+QWidget#verticalStackedWidgetPage3 {
+    background-image: url(":/new/prefix1/images/bg_11.png");
+}
+
+QWidget#FriendMessageBar_2 {
+    background-color: rgb(245, 245, 245);
+    border-bottom: 1px solid rgb(229, 229, 229)
+}
+
+QWidget#verticalStackedWidgetPage2 {
+    background-color: white;
+}
+
+QWidget#verticalStackedWidgetPage3 {
+    background-color: white;
+}
+
+QWidget#verticalStackedWidgetPage4 {
+    background-color: rgb(245, 245, 245);
+}
+
+QWidget#EditMessageBar {
+    background-color: rgb(245, 245, 245);
+}
+
+QWidget#SendMessageBar {
+    background-color: rgb(245, 245, 245);
+}
+
+QWidget#verticalWidget {
+    background-color: rgb(245, 245, 245);
+}
+
+QPushButton#pushButton_Close {
+    border: none;
+}
+
+QPushButton#pushButton_Close:hover {
+    border: none;
+    background-color: red;
+}
+
+QPushButton#pushButton_Reduce {
+    border: none;
+    /* image: url(":/new/prefix1/images/reduce.png"); */
+}
+
+QPushButton#pushButton_Reduce:hover {
+    border: none;
+    background-color: rgb(255, 255, 255);
+}
+
+QPushButton#pushButton_increase {
+    border: none;
+}
+
+QListView#listView_Users {
+    background-color: rgb(245, 245, 245);
+    border: none;
+}
+
+QListView#listView_FriendApply {
+    background-color: rgb(245, 245, 245);
+    border: none;
+}
+
+QListView#listView_Chat {
+    border: none;
+    background-color: rgb(245, 245, 245);
+    border-bottom: 1PX solid rgb(229, 229, 229);
+
+}
+
+/* 设置滚动条整体样式 */
+QScrollBar:vertical {
+    background: rgb(241, 241, 241);
+    width: 6px;
+    border-radius: 50px;
+    margin: 0;
+}
+
+/* 设置滚动条滑块样式 */
+QScrollBar::handle:vertical {
+    background: rgb(245, 245, 245);
+    border-radius: 50px;
+}
+
+/* 鼠标悬停在滑块上时的样式 */
+QScrollBar::handle:vertical:hover {
+    background: rgb(210, 210, 210);
+}
+
+/* 按下滑块时的样式 */
+QScrollBar::handle:vertical:pressed {
+    background: rgb(186, 186, 186);
+}
+
+/* 隐藏滚动条上下箭头按钮 */
+QScrollBar::add-line:vertical,
+QScrollBar::sub-line:vertical {
+    height: 0px;
+    width: 0px;
+    subcontrol-origin: margin;
+}
+
+/* 隐藏滚动条上下箭头按钮背景 */
+QScrollBar::add-page:vertical,
+QScrollBar::sub-page:vertical {
+    background: none;
+}
+
+QTextEdit#textEdit_Msg {
+    border: none;
+    background-color: rgb(245, 245, 245);
+}
+
+QPushButton#pushButton_SendMsg,
+QPushButton#pushButton_FriendVideo,
+QPushButton#pushButton_FriendVoice {
+    color: white;
+    border: none;
+    border-radius: 8px;
+    background-color: rgb(0, 102, 204);
+}
+
+QPushButton#pushButton_SendMsg:hover,
+QPushButton#pushButton_FriendVideo:hover,
+QPushButton#pushButton_FriendVoice:hover {
+    color: white;
+    border: none;
+    border-radius: 8px;
+    background-color: rgb(20, 114, 208);
+}
+
+QPushButton#pushButton_SendFile,
+QPushButton#pushButton_Emoji {
+    background-color: rgb(245, 245, 245);
+    border: none;
+
+}
+
+QPushButton#pushButton_Setting,
+QPushButton#pushButton_Friend,
+QPushButton#pushButton_Message,
+QPushButton#pushButton_SearchFriend,
+QPushButton#pushButton_AddFriend {
+    background-color: rgb(229, 229, 229);
+    border: none;
+
+}
+
+
+QPushButton#pushButton_SendFile:hover,
+QPushButton#pushButton_Emoji:hover {
+    border-radius: 10px;
+    background-color: rgb(255, 255, 255);
+
+}
+
+
+QPushButton#pushButton_SendFile:checked,
+QPushButton#pushButton_Emoji:checked {
+    border-radius: 10px;
+    background-color: rgb(255, 255, 255);
+
+}
+
+
+QPushButton#pushButton_Friend:hover,
+QPushButton#pushButton_Message:hover,
+QPushButton#pushButton_Setting:hover,
+QPushButton#pushButton_SearchFriend:hover,
+QPushButton#pushButton_AddFriend:hover {
+    border-radius: 10px;
+    background-color: white;
+}
+
+QPushButton#pushButton_Friend:checked,
+QPushButton#pushButton_Message:checked,
+QPushButton#pushButton_Setting:checked {
+    border-radius: 10px;
+    background-color: white;
+}
+
+/* 正常状态下的搜索框样式 */
+QLineEdit#lineEdit_Search {
+    border-radius: 10px;
+    background-color: rgb(245, 245, 245);
+    padding: 5px 10px;
+    border: 1px solid transparent;
+    color: #333;
+    font-size: 14px;
+}
+
+/* 鼠标悬停时的样式 */
+QLineEdit#lineEdit_Search:hover {
+    background-color: rgb(235, 235, 235);
+    border: 1px solid #999;
+}
+
+/* 获取焦点时的样式 */
+QLineEdit#lineEdit_Search:focus {
+    background-color: #fff;
+    border: 1px solid #0078d7;
+    outline: none;
+}
+
+/* 禁用状态下的样式 */
+QLineEdit#lineEdit_Search:disabled {
+    background-color: #eee;
+    color: #999;
+}
