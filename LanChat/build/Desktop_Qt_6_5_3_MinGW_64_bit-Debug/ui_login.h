@@ -113,7 +113,7 @@ public:
         gridLayout->setSpacing(0);
         gridLayout->setObjectName("gridLayout");
         gridLayout->setContentsMargins(0, 0, 0, 0);
-        verticalSpacer_6 = new QSpacerItem(20, 60, QSizePolicy::Policy::Fixed, QSizePolicy::Minimum);
+        verticalSpacer_6 = new QSpacerItem(20, 60, QSizePolicy::Minimum, QSizePolicy::Fixed);
 
         gridLayout->addItem(verticalSpacer_6, 1, 2, 1, 1);
 
@@ -128,7 +128,7 @@ public:
         lineEdit_UserName->setObjectName("lineEdit_UserName");
         lineEdit_UserName->setMinimumSize(QSize(0, 40));
         lineEdit_UserName->setMaximumSize(QSize(16777215, 40));
-        lineEdit_UserName->setAlignment(Qt::AlignmentFlag::AlignCenter);
+        lineEdit_UserName->setAlignment(Qt::AlignCenter);
 
         gridLayout->addWidget(lineEdit_UserName, 4, 1, 1, 3);
 
@@ -140,15 +140,15 @@ public:
         lineEdit_Password->setObjectName("lineEdit_Password");
         lineEdit_Password->setMinimumSize(QSize(0, 40));
         lineEdit_Password->setMaximumSize(QSize(16777215, 40));
-        lineEdit_Password->setAlignment(Qt::AlignmentFlag::AlignCenter);
+        lineEdit_Password->setAlignment(Qt::AlignCenter);
 
         gridLayout->addWidget(lineEdit_Password, 6, 1, 1, 3);
 
-        verticalSpacer_5 = new QSpacerItem(20, 50, QSizePolicy::Policy::Minimum, QSizePolicy::Minimum);
+        verticalSpacer_5 = new QSpacerItem(20, 50, QSizePolicy::Minimum, QSizePolicy::Minimum);
 
         gridLayout->addItem(verticalSpacer_5, 13, 2, 1, 1);
 
-        horizontalSpacer_3 = new QSpacerItem(30, 20, QSizePolicy::Policy::Maximum, QSizePolicy::Minimum);
+        horizontalSpacer_3 = new QSpacerItem(30, 20, QSizePolicy::Maximum, QSizePolicy::Minimum);
 
         gridLayout->addItem(horizontalSpacer_3, 2, 4, 1, 1);
 
@@ -156,7 +156,7 @@ public:
 
         gridLayout->addItem(horizontalSpacer_4, 2, 1, 1, 1);
 
-        verticalSpacer_7 = new QSpacerItem(20, 10, QSizePolicy::Policy::Fixed, QSizePolicy::Minimum);
+        verticalSpacer_7 = new QSpacerItem(20, 10, QSizePolicy::Minimum, QSizePolicy::Fixed);
 
         gridLayout->addItem(verticalSpacer_7, 11, 2, 1, 1);
 
@@ -165,7 +165,7 @@ public:
 
         gridLayout->addWidget(checkBox_Authorize, 8, 1, 1, 3);
 
-        horizontalSpacer_2 = new QSpacerItem(30, 20, QSizePolicy::Policy::Maximum, QSizePolicy::Minimum);
+        horizontalSpacer_2 = new QSpacerItem(30, 20, QSizePolicy::Maximum, QSizePolicy::Minimum);
 
         gridLayout->addItem(horizontalSpacer_2, 2, 0, 1, 1);
 
@@ -176,19 +176,19 @@ public:
 
         gridLayout->addWidget(pushButton_Login, 10, 1, 1, 3);
 
-        verticalSpacer_3 = new QSpacerItem(20, 10, QSizePolicy::Policy::Fixed, QSizePolicy::Minimum);
+        verticalSpacer_3 = new QSpacerItem(20, 10, QSizePolicy::Minimum, QSizePolicy::Fixed);
 
         gridLayout->addItem(verticalSpacer_3, 7, 2, 1, 1);
 
-        verticalSpacer_4 = new QSpacerItem(20, 10, QSizePolicy::Policy::Fixed, QSizePolicy::Minimum);
+        verticalSpacer_4 = new QSpacerItem(20, 10, QSizePolicy::Minimum, QSizePolicy::Fixed);
 
         gridLayout->addItem(verticalSpacer_4, 9, 2, 1, 1);
 
-        verticalSpacer_2 = new QSpacerItem(20, 10, QSizePolicy::Policy::Fixed, QSizePolicy::Minimum);
+        verticalSpacer_2 = new QSpacerItem(20, 10, QSizePolicy::Minimum, QSizePolicy::Fixed);
 
         gridLayout->addItem(verticalSpacer_2, 5, 2, 1, 1);
 
-        verticalSpacer = new QSpacerItem(20, 20, QSizePolicy::Policy::Fixed, QSizePolicy::Minimum);
+        verticalSpacer = new QSpacerItem(20, 20, QSizePolicy::Minimum, QSizePolicy::Fixed);
 
         gridLayout->addItem(verticalSpacer, 3, 2, 1, 1);
 

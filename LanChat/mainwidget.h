@@ -110,6 +110,7 @@ public:
 
     void updateRecentMessageInFriendList(const QString &message, const QString &timestamp);
 
+
 private:
     Ui::MainWidget *ui;                        // 用户界面指针，指向 MainWidget的 UI 对象
 
@@ -137,67 +138,65 @@ private:
 
     QStandardItemModel *friendListModel;       // 好友列表模型
 
-
-
 protected:
-    // 重绘事件
-   void paintEvent(QPaintEvent *event);
+           // 重绘事件
+    void paintEvent(QPaintEvent *event);
 
-   // 消息列表
-   void setupMessageList();
+    // 消息列表
+    void setupMessageList();
 
-   // 好友列表
-   void setupFriendsList();
+    // 好友列表
+    void setupFriendsList();
 
-   // 搜索列表
-   void setupSearchList();
+    // 搜索列表
+    void setupSearchList();
 
-   // 从服务器获取好友申请信息
-   QList<MainWidget::FriendsItem> fetchFriendRequestsFromServer();
+    // 从服务器获取好友申请信息
+    QList<MainWidget::FriendsItem> fetchFriendRequestsFromServer();
 
-   // 获取好友消息列表
-   void fetchFriendList(QStandardItemModel *friendListModel);
+    // 获取好友消息列表
+    void fetchFriendList(QStandardItemModel *friendListModel);
 
 private slots:
-   // 消息列表按钮
-   void on_pushButton_Message_released();
+    // 消息列表按钮
+    void on_pushButton_Message_released();
 
-   // 好友列表按钮
-   void on_pushButton_Friend_released();
+    // 好友列表按钮
+    void on_pushButton_Friend_released();
 
-   // 设置按钮
-   void on_pushButton_Setting_released();
+    // 设置按钮
+    void on_pushButton_Setting_released();
 
-   // 加载界面头像
-   void onAvatarLoaded(const QPixmap &pixmap);
+    // 加载界面头像
+    void onAvatarLoaded(const QPixmap &pixmap);
 
-   // 添加好友
-   void on_pushButton_AddFriend_released();
+    // 添加好友
+    void on_pushButton_AddFriend_released();
 
-   // 更新界面头像
-   void updateAvatar(const QString &avatarBase64);
+    // 更新界面头像
+    void updateAvatar(const QString &avatarBase64);
 
-   // 接收并处理状态变化
-   void onStatusChanged(const QString newStatus);
+    // 接收并处理状态变化
+    void onStatusChanged(const QString newStatus);
 
-   // 读取服务器发送的消息
-   void onSocketReadyRead();
+    // 读取服务器发送的消息
+    void onSocketReadyRead();
 
-   // 连接成功时的槽函数
-   void onSocketConnected();
+    // 连接成功时的槽函数
+    void onSocketConnected();
 
-   // 处理Socket错误
-   void onSocketError(QAbstractSocket::SocketError error);
+    // 处理Socket错误
+    void onSocketError(QAbstractSocket::SocketError error);
 
-   // 发送消息按钮
-   void on_pushButton_SendMsg_released();
+    // 发送消息按钮
+    void on_pushButton_SendMsg_released();
 
-   void on_pushButton_FriendVoice_released();
+    void on_pushButton_FriendVoice_released();
 
-   void on_pushButton_FriendVideo_released();
+    void on_pushButton_FriendVideo_released();
 
-   signals:
-   // 会话ID就绪信号
-   void chatSessionIdReady();
+signals:
+    // 会话ID就绪信号
+    void chatSessionIdReady();
 };
 #endif // MAINWIDGET_H

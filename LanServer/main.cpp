@@ -10,6 +10,9 @@
 #include <QTcpServer>
 #include <QTcpSocket>
 
+// 定义一个映射用于存储每个用户名对应的客户端套接字
+QMap<QString, QTcpSocket*> usernameToSocket;
+
 int main(int argc, char *argv[])
 {
     QCoreApplication a(argc, argv);
@@ -111,509 +114,509 @@ int main(int argc, char *argv[])
     QHttpServer server;
 
     server.afterRequest([](QHttpServerResponse&& response)
-    {
-        response.setHeader("Content-Type", "application/json;utf-8");
-        return std::move(response);
-    });
+                        {
+                            response.setHeader("Content-Type", "application/json;utf-8");
+                            return std::move(response);
+                        });
 
     // 登录接口(API) /api/login
     server.route("/api/login", [](const QHttpServerRequest& request)
-    {
-        // 获取客户端提交的用户名和密码
-        QUrlQuery uquery = request.query();
-        auto username = uquery.queryItemValue("username");
-        auto password = uquery.queryItemValue("password");
+                 {
+                     // 获取客户端提交的用户名和密码
+                     QUrlQuery uquery = request.query();
+                     auto username = uquery.queryItemValue("username");
+                     auto password = uquery.queryItemValue("password");
 
-        // 账号密码校验
-        // 从数据库进行比对
-        QSqlQuery query;
-        query.prepare("SELECT COUNT(*) FROM users WHERE user_name = :username AND user_password = :password");
-        query.bindValue(":username", username);
-        query.bindValue(":password", password);
+                     // 账号密码校验
+                     // 从数据库进行比对
+                     QSqlQuery query;
+                     query.prepare("SELECT COUNT(*) FROM users WHERE user_name = :username AND user_password = :password");
+                     query.bindValue(":username", username);
+                     query.bindValue(":password", password);
 
-        if (query.exec() && query.next())
-        {
-            int count = query.value(0).toInt();
+                     if (query.exec() && query.next())
+                     {
+                         int count = query.value(0).toInt();
 
-            if (count > 0)
-            {
-                // 登录成功
-                return QString(R"({"status":"success", "code":200, "message":"登录成功!"})");
-            }
-            else
-            {
-                // 用户名或密码错误
-                return QString(R"({"status":"failed", "code":200, "message":"用户名或密码不正确!"})");
-            }
-        }
-        else
-        {
-            // 查询执行失败，返回错误信息
-            return QString(R"({"status":"failed", "code":500, "message":"数据库查询失败! %1"})").arg(query.lastError().text());
-        }
-    });
+                         if (count > 0)
+                         {
+                             // 登录成功
+                             return QString(R"({"status":"success", "code":200, "message":"登录成功!"})");
+                         }
+                         else
+                         {
+                             // 用户名或密码错误
+                             return QString(R"({"status":"failed", "code":200, "message":"用户名或密码不正确!"})");
+                         }
+                     }
+                     else
+                     {
+                         // 查询执行失败，返回错误信息
+                         return QString(R"({"status":"failed", "code":500, "message":"数据库查询失败! %1"})").arg(query.lastError().text());
+                     }
+                 });
 
 
     // 注册接口(API) /api/signup
     server.route("/api/signup", [](const QHttpServerRequest& request)
-    {
-        // 获取客户端提交的用户名和密码
-        QUrlQuery uquery = request.query();
-        auto username = uquery.queryItemValue("username");
-        auto password = uquery.queryItemValue("password");
+                 {
+                     // 获取客户端提交的用户名和密码
+                     QUrlQuery uquery = request.query();
+                     auto username = uquery.queryItemValue("username");
+                     auto password = uquery.queryItemValue("password");
 
-        if (username.isEmpty() || password.isEmpty())
-        {
-            return QString(R"({"status":"failed", "code":400, "message":"用户名和密码不能为空!"})");
-        }
+                     if (username.isEmpty() || password.isEmpty())
+                     {
+                         return QString(R"({"status":"failed", "code":400, "message":"用户名和密码不能为空!"})");
+                     }
 
-        // 检查用户名是否已存在
-        QSqlQuery query;
-        query.prepare("SELECT COUNT(*) FROM users WHERE user_name = :username");
-        query.bindValue(":username", username);
+                     // 检查用户名是否已存在
+                     QSqlQuery query;
+                     query.prepare("SELECT COUNT(*) FROM users WHERE user_name = :username");
+                     query.bindValue(":username", username);
 
-        if (query.exec() && query.next())
-        {
-            int count = query.value(0).toInt();
+                     if (query.exec() && query.next())
+                     {
+                         int count = query.value(0).toInt();
 
-            if (count > 0)
-            {
-                return QString(R"({"status":"repeat", "code":400, "message":"用户名已存在!"})");
-            }
-        }
-        else
-        {
-            return QString(R"({"status":"failed", "code":500, "message":"数据库查询失败! %1"})").arg(query.lastError().text());
-        }
+                         if (count > 0)
+                         {
+                             return QString(R"({"status":"repeat", "code":400, "message":"用户名已存在!"})");
+                         }
+                     }
+                     else
+                     {
+                         return QString(R"({"status":"failed", "code":500, "message":"数据库查询失败! %1"})").arg(query.lastError().text());
+                     }
 
-        // 插入新用户
-        query.prepare("INSERT INTO users(user_name, user_password) VALUES(:username, :password)");
-        query.bindValue(":username", username);
-        query.bindValue(":password", password);
+                     // 插入新用户
+                     query.prepare("INSERT INTO users(user_name, user_password) VALUES(:username, :password)");
+                     query.bindValue(":username", username);
+                     query.bindValue(":password", password);
 
-        if (query.exec())
-        {
-            return QString(R"({"status":"success", "code":200, "message":"注册成功!"})");
-        }
-        else
-        {
-            return QString(R"({"status":"failed", "code":500, "message":"注册失败! %1"})").arg(query.lastError().text());
-        }
-    });
+                     if (query.exec())
+                     {
+                         return QString(R"({"status":"success", "code":200, "message":"注册成功!"})");
+                     }
+                     else
+                     {
+                         return QString(R"({"status":"failed", "code":500, "message":"注册失败! %1"})").arg(query.lastError().text());
+                     }
+                 });
 
     // 修改用户信息接口(API) /api/profile
     server.route("/api/profile", [](const QHttpServerRequest& request)
-    {
-        QByteArray body = request.body();
-        QJsonDocument jsonDoc = QJsonDocument::fromJson(body);
+                 {
+                     QByteArray body = request.body();
+                     QJsonDocument jsonDoc = QJsonDocument::fromJson(body);
 
-        if (jsonDoc.isNull() || !jsonDoc.isObject()) {
-            return QString(R"({"status":"failed", "code":400, "message":"无效的JSON数据!"})");
-        }
+                     if (jsonDoc.isNull() || !jsonDoc.isObject()) {
+                         return QString(R"({"status":"failed", "code":400, "message":"无效的JSON数据!"})");
+                     }
 
-        QJsonObject jsonObj = jsonDoc.object();
-        QString username = jsonObj["username"].toString();
-        QString uname = jsonObj["uname"].toString();
-        QString gender = jsonObj["gender"].toString();
-        int age = jsonObj["age"].toInt();
-        QString region = jsonObj["region"].toString();
-        QString avatar = jsonObj["avatar"].toString();
+                     QJsonObject jsonObj = jsonDoc.object();
+                     QString username = jsonObj["username"].toString();
+                     QString uname = jsonObj["uname"].toString();
+                     QString gender = jsonObj["gender"].toString();
+                     int age = jsonObj["age"].toInt();
+                     QString region = jsonObj["region"].toString();
+                     QString avatar = jsonObj["avatar"].toString();
 
 
-        qInfo() << "Received data: " << username << uname << gender << age << region << avatar;
+                     qInfo() << "Received data: " << username << uname << gender << age << region << avatar;
 
-        // 检查必填字段
-        if (username.isEmpty()) {
-            return QString(R"({"status":"failed", "code":400, "message":"用户名为必填项!"})");
-        }
+                     // 检查必填字段
+                     if (username.isEmpty()) {
+                         return QString(R"({"status":"failed", "code":400, "message":"用户名为必填项!"})");
+                     }
 
-        if (uname.isEmpty())
-        {
-            return QString(R"({"status":"failed", "code":400, "message":"昵称为必填项!"})");
-        }
+                     if (uname.isEmpty())
+                     {
+                         return QString(R"({"status":"failed", "code":400, "message":"昵称为必填项!"})");
+                     }
 
-        bool isGenderValid = (gender == "男" || gender == "女");
-        if (!isGenderValid)
-        {
-            return QString(R"({"status":"failed", "code":400, "message":"性别字段无效! 必须为 '男' 或 '女'"})");
-        }
+                     bool isGenderValid = (gender == "男" || gender == "女");
+                     if (!isGenderValid)
+                     {
+                         return QString(R"({"status":"failed", "code":400, "message":"性别字段无效! 必须为 '男' 或 '女'"})");
+                     }
 
-        // 检查用户是否存在
-        QSqlQuery query;
-        query.prepare("SELECT COUNT(*) FROM users WHERE user_name = :username");
-        query.bindValue(":username", username);
+                     // 检查用户是否存在
+                     QSqlQuery query;
+                     query.prepare("SELECT COUNT(*) FROM users WHERE user_name = :username");
+                     query.bindValue(":username", username);
 
-        if (query.exec() && query.next())
-        {
-            int count = query.value(0).toInt();
-            if (count == 0)
-            {
-                return QString(R"({"status":"failed", "code":400, "message":"用户不存在!"})");
-            }
-        }
-        else
-        {
-            return QString(R"({"status":"failed", "code":500, "message":"数据库查询失败! %1"})").arg(query.lastError().text());
-        }
+                     if (query.exec() && query.next())
+                     {
+                         int count = query.value(0).toInt();
+                         if (count == 0)
+                         {
+                             return QString(R"({"status":"failed", "code":400, "message":"用户不存在!"})");
+                         }
+                     }
+                     else
+                     {
+                         return QString(R"({"status":"failed", "code":500, "message":"数据库查询失败! %1"})").arg(query.lastError().text());
+                     }
 
-        // 检查用户信息是否已存在
-        query.prepare("SELECT COUNT(*) FROM users_information WHERE user_name = :username");
-        query.bindValue(":username", username);
+                     // 检查用户信息是否已存在
+                     query.prepare("SELECT COUNT(*) FROM users_information WHERE user_name = :username");
+                     query.bindValue(":username", username);
 
-        if (query.exec() && query.next())
-        {
-            int count = query.value(0).toInt();
-            if (count == 0)
-            {
-                // 插入新用户信息
-                query.prepare("INSERT INTO users_information(user_name, uname, user_gender, user_age, user_region, avatar) "
-                              "VALUES(:user_name, :uname, :user_gender, :user_age, :user_region, :avatar)");
-                query.bindValue(":user_name", username);
-                query.bindValue(":uname", uname);
-                query.bindValue(":user_gender", gender);
-                query.bindValue(":user_age", age);
-                query.bindValue(":user_region", region);
-                query.bindValue(":avatar", avatar);
-            }
-            else
-            {
-                // 更新用户信息
-                query.prepare("UPDATE users_information SET uname = :uname, user_gender = :user_gender, "
-                              "user_age = :user_age, user_region = :user_region, avatar = :avatar WHERE user_name = :user_name");
-                query.bindValue(":user_name", username);
-                query.bindValue(":uname", uname);
-                query.bindValue(":user_gender", gender);
-                query.bindValue(":user_age", age);
-                query.bindValue(":user_region", region);
-                query.bindValue(":avatar", avatar);
-            }
-        }
+                     if (query.exec() && query.next())
+                     {
+                         int count = query.value(0).toInt();
+                         if (count == 0)
+                         {
+                             // 插入新用户信息
+                             query.prepare("INSERT INTO users_information(user_name, uname, user_gender, user_age, user_region, avatar) "
+                                           "VALUES(:user_name, :uname, :user_gender, :user_age, :user_region, :avatar)");
+                             query.bindValue(":user_name", username);
+                             query.bindValue(":uname", uname);
+                             query.bindValue(":user_gender", gender);
+                             query.bindValue(":user_age", age);
+                             query.bindValue(":user_region", region);
+                             query.bindValue(":avatar", avatar);
+                         }
+                         else
+                         {
+                             // 更新用户信息
+                             query.prepare("UPDATE users_information SET uname = :uname, user_gender = :user_gender, "
+                                           "user_age = :user_age, user_region = :user_region, avatar = :avatar WHERE user_name = :user_name");
+                             query.bindValue(":user_name", username);
+                             query.bindValue(":uname", uname);
+                             query.bindValue(":user_gender", gender);
+                             query.bindValue(":user_age", age);
+                             query.bindValue(":user_region", region);
+                             query.bindValue(":avatar", avatar);
+                         }
+                     }
 
-        if (query.exec())
-        {
-            return QString(R"({"status":"success", "code":200, "message":"用户信息更新成功!"})");
-        }
-        else
-        {
-            return QString(R"({"status":"failed", "code":500, "message":"用户信息更新失败! %1"})").arg(query.lastError().text());
-        }
-    });
+                     if (query.exec())
+                     {
+                         return QString(R"({"status":"success", "code":200, "message":"用户信息更新成功!"})");
+                     }
+                     else
+                     {
+                         return QString(R"({"status":"failed", "code":500, "message":"用户信息更新失败! %1"})").arg(query.lastError().text());
+                     }
+                 });
 
 
     // 获取用户信息接口(API) /api/getUserData
     server.route("/api/getUserData", [](const QHttpServerRequest& request)
-    {
-        QUrlQuery uquery = request.query();
-        auto username = uquery.queryItemValue("username");
+                 {
+                     QUrlQuery uquery = request.query();
+                     auto username = uquery.queryItemValue("username");
 
-        qInfo() << "Received data: " << username;
+                     qInfo() << "Received data: " << username;
 
-        if (username.isEmpty())
-        {
-             return QString(R"({"status":"failed", "code":400, "message":传递用户名为空!"})");
-        }
+                     if (username.isEmpty())
+                     {
+                         return QString(R"({"status":"failed", "code":400, "message":传递用户名为空!"})");
+                     }
 
-        QSqlQuery query;
-        query.prepare("SELECT uname, user_gender, user_age, user_region, avatar FROM users_information WHERE user_name = :username");
-        query.bindValue(":username", username);
+                     QSqlQuery query;
+                     query.prepare("SELECT uname, user_gender, user_age, user_region, avatar FROM users_information WHERE user_name = :username");
+                     query.bindValue(":username", username);
 
-        if (!query.exec())
-        {
-            return QString(R"({"status":"failed", "code":500, "message":"数据库查询失败!"})");
-        }
+                     if (!query.exec())
+                     {
+                         return QString(R"({"status":"failed", "code":500, "message":"数据库查询失败!"})");
+                     }
 
-        // 如果没有查询到数据
-        if (!query.next())
-        {
-            return QString(R"({"status":"failed", "code":404, "message":"用户信息未找到!"})");
-        }
+                     // 如果没有查询到数据
+                     if (!query.next())
+                     {
+                         return QString(R"({"status":"failed", "code":404, "message":"用户信息未找到!"})");
+                     }
 
-        // 将查询结果封装为 JSON 格式
-        QJsonObject userData;
-        userData["uname"] = query.value("uname").toString();
-        userData["user_gender"] = query.value("user_gender").toString();
-        userData["user_age"] = query.value("user_age").toInt();
-        userData["user_region"] = query.value("user_region").toString();
-        userData["avatar"] = query.value("avatar").toString();
+                     // 将查询结果封装为 JSON 格式
+                     QJsonObject userData;
+                     userData["uname"] = query.value("uname").toString();
+                     userData["user_gender"] = query.value("user_gender").toString();
+                     userData["user_age"] = query.value("user_age").toInt();
+                     userData["user_region"] = query.value("user_region").toString();
+                     userData["avatar"] = query.value("avatar").toString();
 
 
-        // 将 JSON 对象转换为字符串
-        QJsonDocument doc(userData);
+                     // 将 JSON 对象转换为字符串
+                     QJsonDocument doc(userData);
 
-        // 返回用户信息和状态
-        return QString(R"({"status":"success", "code":200, "message":"用户信息返回成功!", "data":)") + doc.toJson(QJsonDocument::Compact) + "}";
+                     // 返回用户信息和状态
+                     return QString(R"({"status":"success", "code":200, "message":"用户信息返回成功!", "data":)") + doc.toJson(QJsonDocument::Compact) + "}";
 
-    });
+                 });
 
     // 查询好友接口(API) /api/addfriend
     server.route("/api/addfriend", [](const QHttpServerRequest& request)
-    {
-        // 获取客户端提交的好友名
-        QUrlQuery uquery = request.query();
-        auto friendName = uquery.queryItemValue("friendName");
+                 {
+                     // 获取客户端提交的好友名
+                     QUrlQuery uquery = request.query();
+                     auto friendName = uquery.queryItemValue("friendName");
 
-        // 从数据库进行比对
-        QSqlQuery query;
-        query.prepare("SELECT COUNT(*) FROM users WHERE user_name = :friendName");
-        query.bindValue(":friendName", friendName);
+                     // 从数据库进行比对
+                     QSqlQuery query;
+                     query.prepare("SELECT COUNT(*) FROM users WHERE user_name = :friendName");
+                     query.bindValue(":friendName", friendName);
 
 
-        if (query.exec() && query.next())
-        {
-            int count = query.value(0).toInt();
+                     if (query.exec() && query.next())
+                     {
+                         int count = query.value(0).toInt();
 
-            if (count > 0)
-            {
-                // 登录成功
-                return QString(R"({"status":"success", "code":200, "message":"查询好友成功!"})");
-            }
-            else
-            {
-                // 用户名或密码错误
-                return QString(R"({"status":"failed", "code":200, "message":"用户名不存在!"})");
-            }
-        }
-        else
-        {
-            // 查询执行失败，返回错误信息
-            return QString(R"({"status":"failed", "code":500, "message":"数据库查询失败! %1"})").arg(query.lastError().text());
-        }
-    });
+                         if (count > 0)
+                         {
+                             // 登录成功
+                             return QString(R"({"status":"success", "code":200, "message":"查询好友成功!"})");
+                         }
+                         else
+                         {
+                             // 用户名或密码错误
+                             return QString(R"({"status":"failed", "code":200, "message":"用户名不存在!"})");
+                         }
+                     }
+                     else
+                     {
+                         // 查询执行失败，返回错误信息
+                         return QString(R"({"status":"failed", "code":500, "message":"数据库查询失败! %1"})").arg(query.lastError().text());
+                     }
+                 });
 
     // 获取好友信息接口(API) /api/getSearchUserData
     server.route("/api/getSearchUserData", [](const QHttpServerRequest& request)
-    {
-        QUrlQuery uquery = request.query();
-        auto username = uquery.queryItemValue("username");
+                 {
+                     QUrlQuery uquery = request.query();
+                     auto username = uquery.queryItemValue("username");
 
-        qInfo() << "Received data: " << username;
+                     qInfo() << "Received data: " << username;
 
-        qInfo() << "Request URL: " << request.url().toString();
+                     qInfo() << "Request URL: " << request.url().toString();
 
 
-        if (username.isEmpty())
-        {
-            return QString(R"({"status":"failed", "code":400, "message":传递用户名为空!"})");
-        }
+                     if (username.isEmpty())
+                     {
+                         return QString(R"({"status":"failed", "code":400, "message":传递用户名为空!"})");
+                     }
 
-        QSqlQuery query;
-        query.prepare("SELECT uname, user_region, avatar FROM users_information WHERE user_name = :username");
-        query.bindValue(":username", username);
+                     QSqlQuery query;
+                     query.prepare("SELECT uname, user_region, avatar FROM users_information WHERE user_name = :username");
+                     query.bindValue(":username", username);
 
-        if (!query.exec())
-        {
-            return QString(R"({"status":"failed", "code":500, "message":"数据库查询失败!"})");
-        }
+                     if (!query.exec())
+                     {
+                         return QString(R"({"status":"failed", "code":500, "message":"数据库查询失败!"})");
+                     }
 
-        // 如果没有查询到数据
-        if (!query.next())
-        {
-            return QString(R"({"status":"failed", "code":404, "message":"用户信息未找到!"})");
-        }
+                     // 如果没有查询到数据
+                     if (!query.next())
+                     {
+                         return QString(R"({"status":"failed", "code":404, "message":"用户信息未找到!"})");
+                     }
 
-        // 将查询结果封装为 JSON 格式
-        QJsonObject userData;
-        userData["uname"] = query.value("uname").toString();
-        userData["user_region"] = query.value("user_region").toString();
-        userData["avatar"] = query.value("avatar").toString();
+                     // 将查询结果封装为 JSON 格式
+                     QJsonObject userData;
+                     userData["uname"] = query.value("uname").toString();
+                     userData["user_region"] = query.value("user_region").toString();
+                     userData["avatar"] = query.value("avatar").toString();
 
-        // 将 JSON 对象转换为字符串
-        QJsonDocument doc(userData);
+                     // 将 JSON 对象转换为字符串
+                     QJsonDocument doc(userData);
 
-        // 返回用户信息和状态
-        return QString(R"({"status":"success", "code":200, "message":"用户信息返回成功!", "data":)") + doc.toJson(QJsonDocument::Compact) + "}";
+                     // 返回用户信息和状态
+                     return QString(R"({"status":"success", "code":200, "message":"用户信息返回成功!", "data":)") + doc.toJson(QJsonDocument::Compact) + "}";
 
-    });
+                 });
 
     // 申请添加好友接口(API) /api/applytoadd
     server.route("/api/applytoadd", [](const QHttpServerRequest& request)
-    {
-        // 获取客户端提交的好友名
-        QUrlQuery uquery = request.query();
-        auto user_name_1 = uquery.queryItemValue("user_name_1");
-        auto user_name_2 = uquery.queryItemValue("user_name_2");
+                 {
+                     // 获取客户端提交的好友名
+                     QUrlQuery uquery = request.query();
+                     auto user_name_1 = uquery.queryItemValue("user_name_1");
+                     auto user_name_2 = uquery.queryItemValue("user_name_2");
 
-        qInfo() <<"date:" << user_name_1 << user_name_2;
+                     qInfo() <<"date:" << user_name_1 << user_name_2;
 
-        if (user_name_1.isEmpty() || user_name_2.isEmpty())
-        {
-            return QString(R"({"status":"failed", "code":400, "message":"当前登录用户名或添加好友用户名不能为空!"})");
-        }
+                     if (user_name_1.isEmpty() || user_name_2.isEmpty())
+                     {
+                         return QString(R"({"status":"failed", "code":400, "message":"当前登录用户名或添加好友用户名不能为空!"})");
+                     }
 
-        // 检查好友关系是否已存在
-        QSqlQuery query;
-        query.prepare("SELECT status FROM friends WHERE (user_name_1 = :user_name_1 AND user_name_2 = :user_name_2) OR (user_name_1 = :user_name_2 AND user_name_2 = :user_name_1)");
-        query.bindValue(":user_name_1", user_name_1);
-        query.bindValue(":user_name_2", user_name_2);
+                     // 检查好友关系是否已存在
+                     QSqlQuery query;
+                     query.prepare("SELECT status FROM friends WHERE (user_name_1 = :user_name_1 AND user_name_2 = :user_name_2) OR (user_name_1 = :user_name_2 AND user_name_2 = :user_name_1)");
+                     query.bindValue(":user_name_1", user_name_1);
+                     query.bindValue(":user_name_2", user_name_2);
 
-        if (query.exec() && query.next())
-        {
-            QString status = query.value(0).toString();
+                     if (query.exec() && query.next())
+                     {
+                         QString status = query.value(0).toString();
 
-            if (status == "apply")
-            {
-                // 返回已申请
-                return QString(R"({"status":"apply", "code":400, "message":"已申请添加对方为好友，等待对方确认!"})");
-            }
-            else if (status == "friend")
-            {
-                // 返回已是好友
-                return QString(R"({"status":"friend", "code":400, "message":"你们已经是好友!"})");
-            }
-            else if (status == "refuse")
-            {
-                // 返回对方拒绝
-                return QString(R"({"status":"refuse", "code":400, "message":"对方已经拒绝你的好友请求!"})");
-            }
-        }
+                         if (status == "apply")
+                         {
+                             // 返回已申请
+                             return QString(R"({"status":"apply", "code":400, "message":"已申请添加对方为好友，等待对方确认!"})");
+                         }
+                         else if (status == "friend")
+                         {
+                             // 返回已是好友
+                             return QString(R"({"status":"friend", "code":400, "message":"你们已经是好友!"})");
+                         }
+                         else if (status == "refuse")
+                         {
+                             // 返回对方拒绝
+                             return QString(R"({"status":"refuse", "code":400, "message":"对方已经拒绝你的好友请求!"})");
+                         }
+                     }
 
-        // 如果没有找到记录，插入新的好友请求
-        query.prepare("INSERT INTO friends(user_name_1, user_name_2, status) VALUES(:user_name_1, :user_name_2, :status)");
-        query.bindValue(":user_name_1", user_name_1);
-        query.bindValue(":user_name_2", user_name_2);
-        query.bindValue(":status", "apply");
+                     // 如果没有找到记录，插入新的好友请求
+                     query.prepare("INSERT INTO friends(user_name_1, user_name_2, status) VALUES(:user_name_1, :user_name_2, :status)");
+                     query.bindValue(":user_name_1", user_name_1);
+                     query.bindValue(":user_name_2", user_name_2);
+                     query.bindValue(":status", "apply");
 
-        if (query.exec())
-        {
-            return QString(R"({"status":"success", "code":200, "message":"好友申请发送成功!"})");
-        }
-        else
-        {
-            return QString(R"({"status":"failed", "code":500, "message":"好友关系更新失败! %1"})").arg(query.lastError().text());
-        }
+                     if (query.exec())
+                     {
+                         return QString(R"({"status":"success", "code":200, "message":"好友申请发送成功!"})");
+                     }
+                     else
+                     {
+                         return QString(R"({"status":"failed", "code":500, "message":"好友关系更新失败! %1"})").arg(query.lastError().text());
+                     }
 
 
-    });
+                 });
 
     // 处理申请信息接口(API) /api/addverification
     server.route("/api/addverification", [](const QHttpServerRequest& request)
-     {
-        // 获取客户端提交的好友名
-        QUrlQuery uquery = request.query();
-        auto user_name_1 = uquery.queryItemValue("user_name_1");
-        auto user_name_2 = uquery.queryItemValue("user_name_2");
-        auto buttonText = uquery.queryItemValue("buttonText");
+                 {
+                     // 获取客户端提交的好友名
+                     QUrlQuery uquery = request.query();
+                     auto user_name_1 = uquery.queryItemValue("user_name_1");
+                     auto user_name_2 = uquery.queryItemValue("user_name_2");
+                     auto buttonText = uquery.queryItemValue("buttonText");
 
-        qInfo() <<"date:" << user_name_1 << user_name_2 << buttonText;
+                     qInfo() <<"date:" << user_name_1 << user_name_2 << buttonText;
 
-        if (user_name_1.isEmpty() || user_name_2.isEmpty() || buttonText.isEmpty())
-        {
-            return QString(R"({"status":"failed", "code":400, "message":"当前登录用户名或添加好友用户名或按钮文本不能为空!"})");
-        }
+                     if (user_name_1.isEmpty() || user_name_2.isEmpty() || buttonText.isEmpty())
+                     {
+                         return QString(R"({"status":"failed", "code":400, "message":"当前登录用户名或添加好友用户名或按钮文本不能为空!"})");
+                     }
 
-        // 检查好友关系是否已存在
-        QSqlQuery query;
-        query.prepare("SELECT status FROM friends WHERE (user_name_1 = :user_name_1 AND user_name_2 = :user_name_2) OR (user_name_1 = :user_name_2 AND user_name_2 = :user_name_1)");
-        query.bindValue(":user_name_1", user_name_1);
-        query.bindValue(":user_name_2", user_name_2);
+                     // 检查好友关系是否已存在
+                     QSqlQuery query;
+                     query.prepare("SELECT status FROM friends WHERE (user_name_1 = :user_name_1 AND user_name_2 = :user_name_2) OR (user_name_1 = :user_name_2 AND user_name_2 = :user_name_1)");
+                     query.bindValue(":user_name_1", user_name_1);
+                     query.bindValue(":user_name_2", user_name_2);
 
-        if (query.exec() && query.next()) {
-            // 好友关系已存在，更新 status
-            QSqlQuery updateQuery;
-            updateQuery.prepare("UPDATE friends SET status = :status WHERE (user_name_1 = :user_name_1 AND user_name_2 = :user_name_2) OR (user_name_1 = :user_name_2 AND user_name_2 = :user_name_1)");
-            updateQuery.bindValue(":status", buttonText);
-            updateQuery.bindValue(":user_name_1", user_name_1);
-            updateQuery.bindValue(":user_name_2", user_name_2);
-            if (!updateQuery.exec()) {
-                qWarning() << "Failed to update friends status: " << updateQuery.lastError();
-                return QString(R"({"status":"failed", "code":500, "message":"好友关系状态更新失败! %1"})").arg(updateQuery.lastError().text());
-            }
-        }
+                     if (query.exec() && query.next()) {
+                         // 好友关系已存在，更新 status
+                         QSqlQuery updateQuery;
+                         updateQuery.prepare("UPDATE friends SET status = :status WHERE (user_name_1 = :user_name_1 AND user_name_2 = :user_name_2) OR (user_name_1 = :user_name_2 AND user_name_2 = :user_name_1)");
+                         updateQuery.bindValue(":status", buttonText);
+                         updateQuery.bindValue(":user_name_1", user_name_1);
+                         updateQuery.bindValue(":user_name_2", user_name_2);
+                         if (!updateQuery.exec()) {
+                             qWarning() << "Failed to update friends status: " << updateQuery.lastError();
+                             return QString(R"({"status":"failed", "code":500, "message":"好友关系状态更新失败! %1"})").arg(updateQuery.lastError().text());
+                         }
+                     }
 
-        if (buttonText == "friend") {
-            QSqlQuery query;
+                     if (buttonText == "friend") {
+                         QSqlQuery query;
 
-            // 将新的聊天会话插入chat_sessions表
-            query.prepare("INSERT INTO chat_sessions (user_1_id, user_2_id) VALUES (:user_1_id, :user_2_id)");
-            query.bindValue(":user_1_id", user_name_1);
-            query.bindValue(":user_2_id", user_name_2);
+                         // 将新的聊天会话插入chat_sessions表
+                         query.prepare("INSERT INTO chat_sessions (user_1_id, user_2_id) VALUES (:user_1_id, :user_2_id)");
+                         query.bindValue(":user_1_id", user_name_1);
+                         query.bindValue(":user_2_id", user_name_2);
 
-            if (!query.exec()) {
-                qWarning() << "Failed to insert new chat session: " << query.lastError();
-            } else {
-                qDebug() << "New chat session added successfully!";
+                         if (!query.exec()) {
+                             qWarning() << "Failed to insert new chat session: " << query.lastError();
+                         } else {
+                             qDebug() << "New chat session added successfully!";
 
-                // 检索新创建的聊天会话的session_id
-                int sessionId = query.lastInsertId().toInt();
+                             // 检索新创建的聊天会话的session_id
+                             int sessionId = query.lastInsertId().toInt();
 
-                // 在chat_messages表中插入默认消息
-                QSqlQuery messageQuery;
-                messageQuery.prepare("INSERT INTO chat_messages (chat_session_id, sender_id, receiver_id, message_content, message_type) "
-                                     "VALUES (:chat_session_id, :sender_id, :receiver_id, :message_content, :message_type)");
-                messageQuery.bindValue(":chat_session_id", sessionId);                      // 绑定 session_id
-                messageQuery.bindValue(":sender_id", user_name_2);                          // 绑定 sender_id
-                messageQuery.bindValue(":receiver_id", user_name_1);                        // 绑定 receiver_id
-                messageQuery.bindValue(":message_content", "我们已经成为好友，可以开始对话了。");  // 绑定 message_content
-                messageQuery.bindValue(":message_type", "text");                            // 绑定 message_type
+                             // 在chat_messages表中插入默认消息
+                             QSqlQuery messageQuery;
+                             messageQuery.prepare("INSERT INTO chat_messages (chat_session_id, sender_id, receiver_id, message_content, message_type) "
+                                                  "VALUES (:chat_session_id, :sender_id, :receiver_id, :message_content, :message_type)");
+                             messageQuery.bindValue(":chat_session_id", sessionId);                      // 绑定 session_id
+                             messageQuery.bindValue(":sender_id", user_name_2);                          // 绑定 sender_id
+                             messageQuery.bindValue(":receiver_id", user_name_1);                        // 绑定 receiver_id
+                             messageQuery.bindValue(":message_content", "我们已经成为好友，可以开始对话了。");  // 绑定 message_content
+                             messageQuery.bindValue(":message_type", "text");                            // 绑定 message_type
 
-                if (!messageQuery.exec()) {
-                    qWarning() << "Failed to insert message into chat_messages: " << messageQuery.lastError();
-                } else {
-                    qDebug() << "Introductory message added successfully!";
-                }
-            }
-        }
-        else
-        {
-            qInfo() << "好友关系不存在";
+                             if (!messageQuery.exec()) {
+                                 qWarning() << "Failed to insert message into chat_messages: " << messageQuery.lastError();
+                             } else {
+                                 qDebug() << "Introductory message added successfully!";
+                             }
+                         }
+                     }
+                     else
+                     {
+                         qInfo() << "好友关系不存在";
 
-        }
+                     }
 
-        if (query.exec())
-        {
-            return QString(R"({"status":"success", "code":200, "message":"好友申请发送成功!"})");
-        }
-        else
-        {
-            return QString(R"({"status":"failed", "code":500, "message":"好友关系更新失败! %1"})").arg(query.lastError().text());
-        }
-    });
+                     if (query.exec())
+                     {
+                         return QString(R"({"status":"success", "code":200, "message":"好友申请发送成功!"})");
+                     }
+                     else
+                     {
+                         return QString(R"({"status":"failed", "code":500, "message":"好友关系更新失败! %1"})").arg(query.lastError().text());
+                     }
+                 });
 
     // 获取好友信息接口(API) /api/getSearchUserData
     server.route("/api/getFriendRequests", [](const QHttpServerRequest& request)
-    {
-        QUrlQuery uquery = request.query();
-        auto username = uquery.queryItemValue("username");
+                 {
+                     QUrlQuery uquery = request.query();
+                     auto username = uquery.queryItemValue("username");
 
-        qInfo() << "Received data: " << username;
+                     qInfo() << "Received data: " << username;
 
-        qInfo() << "Request URL: " << request.url().toString();
-
-
-        if (username.isEmpty())
-        {
-            return QString(R"({"status":"failed", "code":400, "message":传递用户名为空!"})");
-        }
-
-        QSqlQuery query;
-        query.prepare("SELECT uname, user_region, avatar FROM users_information WHERE user_name = :username");
-        query.bindValue(":username", username);
-
-        if (!query.exec())
-        {
-            return QString(R"({"status":"failed", "code":500, "message":"数据库查询失败!"})");
-        }
-
-        // 如果没有查询到数据
-        if (!query.next())
-        {
-            return QString(R"({"status":"failed", "code":404, "message":"用户信息未找到!"})");
-        }
-
-        // 将查询结果封装为 JSON 格式
-        QJsonObject userData;
-        userData["uname"] = query.value("uname").toString();
-        userData["user_region"] = query.value("user_region").toString();
-        userData["avatar"] = query.value("avatar").toString();
+                     qInfo() << "Request URL: " << request.url().toString();
 
 
-        // 将 JSON 对象转换为字符串
-        QJsonDocument doc(userData);
+                     if (username.isEmpty())
+                     {
+                         return QString(R"({"status":"failed", "code":400, "message":传递用户名为空!"})");
+                     }
 
-        // 返回用户信息和状态
-        return QString(R"({"status":"success", "code":200, "message":"用户信息返回成功!", "data":)") + doc.toJson(QJsonDocument::Compact) + "}";
+                     QSqlQuery query;
+                     query.prepare("SELECT uname, user_region, avatar FROM users_information WHERE user_name = :username");
+                     query.bindValue(":username", username);
 
-    });
+                     if (!query.exec())
+                     {
+                         return QString(R"({"status":"failed", "code":500, "message":"数据库查询失败!"})");
+                     }
+
+                     // 如果没有查询到数据
+                     if (!query.next())
+                     {
+                         return QString(R"({"status":"failed", "code":404, "message":"用户信息未找到!"})");
+                     }
+
+                     // 将查询结果封装为 JSON 格式
+                     QJsonObject userData;
+                     userData["uname"] = query.value("uname").toString();
+                     userData["user_region"] = query.value("user_region").toString();
+                     userData["avatar"] = query.value("avatar").toString();
+
+
+                     // 将 JSON 对象转换为字符串
+                     QJsonDocument doc(userData);
+
+                     // 返回用户信息和状态
+                     return QString(R"({"status":"success", "code":200, "message":"用户信息返回成功!", "data":)") + doc.toJson(QJsonDocument::Compact) + "}";
+
+                 });
 
 
     // 获取消息列表接口 (API) /api/fetchfriendlist
@@ -1131,6 +1134,15 @@ int main(int argc, char *argv[])
         QString user1 = query.queryItemValue("user1");
         QString user2 = query.queryItemValue("user2");
 
+        // 检查 user1 是否等于 user2
+        if (user1 == user2) {
+            QJsonObject response;
+            response["status"] = "error";
+            response["message"] = "user1 and user2 cannot be the same.";
+            QJsonDocument doc(response);
+            return QHttpServerResponse(doc.toJson());
+        }
+
         QSqlDatabase db = QSqlDatabase::database();
         QSqlQuery checkQuery(db);
         checkQuery.prepare("SELECT session_id FROM chat_sessions WHERE (user_1_id = :user1 AND user_2_id = :user2) OR (user_1_id = :user2 AND user_2_id = :user1)");
@@ -1170,10 +1182,13 @@ int main(int argc, char *argv[])
     QList<QTcpSocket*> tcpClients;  // 保存所有连接的客户端
 
     // 监听TCP端口（例如 82)
-    if (!tcpServer.listen(QHostAddress::Any, 82)) {
+    if (!tcpServer.listen(QHostAddress::Any, 82))
+    {
         qWarning() << "TCP Server could not start:" << tcpServer.errorString();
         return -1;
-    } else {
+    }
+    else
+    {
         qInfo() << "TCP Server started on port 82";
     }
 
@@ -1184,9 +1199,33 @@ int main(int argc, char *argv[])
         qInfo() << "New TCP client connected:" << clientSocket->peerAddress().toString();
 
         // 接收数据
-        QObject::connect(clientSocket, &QTcpSocket::readyRead, [clientSocket]() {
+        QObject::connect(clientSocket, &QTcpSocket::readyRead, [clientSocket, &tcpClients]() {
             QByteArray data = clientSocket->readAll();
             qInfo() << "Received TCP data:" << data;
+
+            // 解析JSON数据
+            QJsonDocument doc = QJsonDocument::fromJson(data);
+            if (doc.isNull() || !doc.isObject()) {
+                qWarning() << "无效的JSON数据";
+                return;
+            }
+
+            QJsonObject jsonObj = doc.object();
+            QString sender = jsonObj["sender"].toString();
+            QString receiver = jsonObj["receiver"].toString();
+            QString content = jsonObj["content"].toString();
+
+            // 保存发送者的套接字信息
+            usernameToSocket[sender] = clientSocket;
+
+            // 查找接收者的套接字
+            if (usernameToSocket.contains(receiver)) {
+                QTcpSocket *receiverSocket = usernameToSocket[receiver];
+                // 发送消息给接收者
+                receiverSocket->write(data);
+            } else {
+                qWarning() << "接收者未连接:" << receiver;
+            }
 
             QString response = QString("%1").arg(QString(data));
             clientSocket->write(response.toUtf8());

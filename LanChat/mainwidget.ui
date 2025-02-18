@@ -54,7 +54,7 @@
       <number>0</number>
      </property>
      <property name="currentIndex">
-      <number>3</number>
+      <number>0</number>
      </property>
      <widget class="QWidget" name="verticalStackedWidgetPage1">
       <layout class="QVBoxLayout" name="verticalLayout_4">
@@ -275,6 +275,9 @@
                </property>
                <property name="text">
                 <string>发送消息</string>
+               </property>
+               <property name="shortcut">
+                <string>Return</string>
                </property>
               </widget>
              </item>
