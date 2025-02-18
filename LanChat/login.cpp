@@ -33,6 +33,9 @@ Login::Login(QWidget *parent) :
 
     ui->pushButton_Login->setEnabled(false);
 
+    // 设置密码框的显示模式为密码模式
+    ui->lineEdit_Password->setEchoMode(QLineEdit::Password);
+
     // 关闭按钮
     connect(ui->pushButton_Close, &QPushButton::clicked, this, [=](){
         this->close();
