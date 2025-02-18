@@ -19,7 +19,7 @@ CXXFLAGS      = -fno-keep-inline-dllexport -O2 -Wall -Wextra -Wextra -fexception
 INCPATH       = -I../../../LanChat -I. -IE:/Qt/6.5.3/mingw_64/include -IE:/Qt/6.5.3/mingw_64/include/QtWidgets -IE:/Qt/6.5.3/mingw_64/include/QtGui -IE:/Qt/6.5.3/mingw_64/include/QtNetwork -IE:/Qt/6.5.3/mingw_64/include/QtSql -IE:/Qt/6.5.3/mingw_64/include/QtCore -Irelease -I. -I/include -IE:/Qt/6.5.3/mingw_64/mkspecs/win32-g++ 
 LINKER      =        g++
 LFLAGS        =        -Wl,-s -Wl,-subsystem,windows -mthreads
-LIBS        =        E:\Qt\6.5.3\mingw_64\lib\libQt6Widgets.a E:\Qt\6.5.3\mingw_64\lib\libQt6Gui.a E:\Qt\6.5.3\mingw_64\lib\libQt6Network.a E:\Qt\6.5.3\mingw_64\lib\libQt6Sql.a E:\Qt\6.5.3\mingw_64\lib\libQt6Core.a -lmingw32 E:\Qt\6.5.3\mingw_64\lib\libQt6EntryPoint.a -lshell32  
+LIBS        =        E:\Qt\6.5.3\mingw_64\lib\libQt6Widgets.a E:\Qt\6.5.3\mingw_64\lib\libQt6Gui.a E:\Qt\6.5.3\mingw_64\lib\libQt6Network.a E:\Qt\6.5.3\mingw_64\lib\libQt6Sql.a E:\Qt\6.5.3\mingw_64\lib\libQt6Core.a release\LanChat_resource_res.o -lmingw32 E:\Qt\6.5.3\mingw_64\lib\libQt6EntryPoint.a -lshell32  
 QMAKE         = E:\Qt\6.5.3\mingw_64\bin\qmake.exe
 DEL_FILE      = del
 CHK_DIR_EXISTS= if not exist
@@ -40,7 +40,7 @@ IDC           = idc
 IDL           = midl
 ZIP           = zip -r -9
 DEF_FILE      = 
-RES_FILE      = 
+RES_FILE      = release\LanChat_resource_res.o
 SED           = $(QMAKE) -install sed
 MOVE          = move
 
@@ -142,8 +142,11 @@ DESTDIR_TARGET = release\LanChat.exe
 first: all
 all: Makefile.Release  release/LanChat.exe
 
-release/LanChat.exe: E:/Qt/6.5.3/mingw_64/lib/libQt6Widgets.a E:/Qt/6.5.3/mingw_64/lib/libQt6Gui.a E:/Qt/6.5.3/mingw_64/lib/libQt6Network.a E:/Qt/6.5.3/mingw_64/lib/libQt6Sql.a E:/Qt/6.5.3/mingw_64/lib/libQt6Core.a E:/Qt/6.5.3/mingw_64/lib/libQt6EntryPoint.a ui_addfriend.h ui_addverification.h ui_login.h ui_mainwidget.h ui_signup.h ui_userprofile.h $(OBJECTS) 
+release/LanChat.exe: E:/Qt/6.5.3/mingw_64/lib/libQt6Widgets.a E:/Qt/6.5.3/mingw_64/lib/libQt6Gui.a E:/Qt/6.5.3/mingw_64/lib/libQt6Network.a E:/Qt/6.5.3/mingw_64/lib/libQt6Sql.a E:/Qt/6.5.3/mingw_64/lib/libQt6Core.a E:/Qt/6.5.3/mingw_64/lib/libQt6EntryPoint.a ui_addfriend.h ui_addverification.h ui_login.h ui_mainwidget.h ui_signup.h ui_userprofile.h $(OBJECTS) release/LanChat_resource_res.o
 	$(LINKER) $(LFLAGS) -o $(DESTDIR_TARGET) @release\object_script.LanChat.Release $(LIBS)
+
+release/LanChat_resource_res.o: LanChat_resource.rc
+	windres -i LanChat_resource.rc -o release\LanChat_resource_res.o --include-dir=. $(DEFINES)
 
 qmake: FORCE
 	@$(QMAKE) -o Makefile.Release ..\..\LanChat.pro -spec win32-g++ "CONFIG+=qtquickcompiler"
@@ -155,6 +158,7 @@ dist:
 
 clean: compiler_clean 
 	-$(DEL_FILE) release\addfriend.o release\addverification.o release\chatmessagedelegate.o release\friendsdetails.o release\friendsitemdelegate.o release\friendsrequest.o release\friendsrequestitemdelegate.o release\login.o release\main.o release\mainwidget.o release\messageitemdelegate.o release\nonclickablechatmodel.o release\signup.o release\userprofile.o release\qrc_images.o release\moc_addfriend.o release\moc_addverification.o release\moc_chatmessagedelegate.o release\moc_friendsdetails.o release\moc_friendsitemdelegate.o release\moc_friendsrequest.o release\moc_friendsrequestitemdelegate.o release\moc_login.o release\moc_mainwidget.o release\moc_messageitemdelegate.o release\moc_nonclickablechatmodel.o release\moc_signup.o release\moc_userprofile.o
+	-$(DEL_FILE) release\LanChat_resource_res.o
 
 distclean: clean 
 	-$(DEL_FILE) .qmake.stash
@@ -6548,7 +6552,6 @@ release/userprofile.o: ../../userprofile.cpp ../../userprofile.h \
 		E:/Qt/6.5.3/mingw_64/include/QtWidgets/QSpacerItem \
 		E:/Qt/6.5.3/mingw_64/include/QtWidgets/QSpinBox \
 		E:/Qt/6.5.3/mingw_64/include/QtWidgets/qspinbox.h \
-		E:/Qt/6.5.3/mingw_64/include/QtWidgets/QVBoxLayout \
 		E:/Qt/6.5.3/mingw_64/include/QtWidgets/QWidget \
 		../../login.h \
 		E:/Qt/6.5.3/mingw_64/include/QtGui/QKeyEvent \
@@ -6563,6 +6566,7 @@ release/userprofile.o: ../../userprofile.cpp ../../userprofile.h \
 		E:/Qt/6.5.3/mingw_64/include/QtGui/qstandarditemmodel.h \
 		E:/Qt/6.5.3/mingw_64/include/QtWidgets/QStackedWidget \
 		E:/Qt/6.5.3/mingw_64/include/QtWidgets/qstackedwidget.h \
+		E:/Qt/6.5.3/mingw_64/include/QtWidgets/QVBoxLayout \
 		E:/Qt/6.5.3/mingw_64/include/QtCore/QJsonArray \
 		E:/Qt/6.5.3/mingw_64/include/QtCore/qjsonarray.h \
 		E:/Qt/6.5.3/mingw_64/include/QtNetwork/QTcpSocket \
