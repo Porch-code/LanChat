@@ -222,9 +222,6 @@ int main(int argc, char *argv[])
                      QString region = jsonObj["region"].toString();
                      QString avatar = jsonObj["avatar"].toString();
 
-
-                     qInfo() << "Received data: " << username << uname << gender << age << region << avatar;
-
                      // 检查必填字段
                      if (username.isEmpty()) {
                          return QString(R"({"status":"failed", "code":400, "message":"用户名为必填项!"})");
@@ -294,6 +291,7 @@ int main(int argc, char *argv[])
 
                      if (query.exec())
                      {
+                         qInfo() << "用户 " << username << "更改个人信息";
                          return QString(R"({"status":"success", "code":200, "message":"用户信息更新成功!"})");
                      }
                      else
@@ -308,8 +306,6 @@ int main(int argc, char *argv[])
                  {
                      QUrlQuery uquery = request.query();
                      auto username = uquery.queryItemValue("username");
-
-                     qInfo() << "Received data: " << username;
 
                      if (username.isEmpty())
                      {
@@ -331,20 +327,21 @@ int main(int argc, char *argv[])
                          return QString(R"({"status":"failed", "code":404, "message":"用户信息未找到!"})");
                      }
 
-                     // 将查询结果封装为 JSON 格式
-                     QJsonObject userData;
-                     userData["uname"] = query.value("uname").toString();
-                     userData["user_gender"] = query.value("user_gender").toString();
-                     userData["user_age"] = query.value("user_age").toInt();
-                     userData["user_region"] = query.value("user_region").toString();
-                     userData["avatar"] = query.value("avatar").toString();
+                    // 将查询结果封装为 JSON 格式
+                    QJsonObject userData;
+                    userData["uname"] = query.value("uname").toString();
+                    userData["user_gender"] = query.value("user_gender").toString();
+                    userData["user_age"] = query.value("user_age").toInt();
+                    userData["user_region"] = query.value("user_region").toString();
+                    userData["avatar"] = query.value("avatar").toString();
 
 
-                     // 将 JSON 对象转换为字符串
-                     QJsonDocument doc(userData);
 
-                     // 返回用户信息和状态
-                     return QString(R"({"status":"success", "code":200, "message":"用户信息返回成功!", "data":)") + doc.toJson(QJsonDocument::Compact) + "}";
+                    // 将 JSON 对象转换为字符串
+                    QJsonDocument doc(userData);
+
+                    // 返回用户信息和状态
+                    return QString(R"({"status":"success", "code":200, "message":"用户信息返回成功!", "data":)") + doc.toJson(QJsonDocument::Compact) + "}";
 
                  });
 
@@ -389,10 +386,6 @@ int main(int argc, char *argv[])
                      QUrlQuery uquery = request.query();
                      auto username = uquery.queryItemValue("username");
 
-                     qInfo() << "Received data: " << username;
-
-                     qInfo() << "Request URL: " << request.url().toString();
-
 
                      if (username.isEmpty())
                      {
@@ -436,8 +429,6 @@ int main(int argc, char *argv[])
                      auto user_name_1 = uquery.queryItemValue("user_name_1");
                      auto user_name_2 = uquery.queryItemValue("user_name_2");
 
-                     qInfo() <<"date:" << user_name_1 << user_name_2;
-
                      if (user_name_1.isEmpty() || user_name_2.isEmpty())
                      {
                          return QString(R"({"status":"failed", "code":400, "message":"当前登录用户名或添加好友用户名不能为空!"})");
@@ -478,6 +469,7 @@ int main(int argc, char *argv[])
 
                      if (query.exec())
                      {
+                         qInfo() << user_name_1 << "向" << "user_name_2" << "提出好友申请";
                          return QString(R"({"status":"success", "code":200, "message":"好友申请发送成功!"})");
                      }
                      else
@@ -497,7 +489,6 @@ int main(int argc, char *argv[])
                      auto user_name_2 = uquery.queryItemValue("user_name_2");
                      auto buttonText = uquery.queryItemValue("buttonText");
 
-                     qInfo() <<"date:" << user_name_1 << user_name_2 << buttonText;
 
                      if (user_name_1.isEmpty() || user_name_2.isEmpty() || buttonText.isEmpty())
                      {
@@ -564,6 +555,7 @@ int main(int argc, char *argv[])
 
                      if (query.exec())
                      {
+                         qInfo() << user_name_1 <<  "通过好友申请";
                          return QString(R"({"status":"success", "code":200, "message":"好友申请发送成功!"})");
                      }
                      else
@@ -577,10 +569,6 @@ int main(int argc, char *argv[])
                  {
                      QUrlQuery uquery = request.query();
                      auto username = uquery.queryItemValue("username");
-
-                     qInfo() << "Received data: " << username;
-
-                     qInfo() << "Request URL: " << request.url().toString();
 
 
                      if (username.isEmpty())
@@ -623,9 +611,6 @@ int main(int argc, char *argv[])
     server.route("/api/fetchfriendlist", [](const QHttpServerRequest& request) {
         QUrlQuery uquery = request.query();
         auto username = uquery.queryItemValue("username");
-
-        qInfo() << "Received data: " << username;
-        qInfo() << "Request URL: " << request.url().toString();
 
         if (username.isEmpty()) {
             return QString(R"({"status":"failed", "code":400, "message":"用户名为空!"})");
@@ -768,7 +753,6 @@ int main(int argc, char *argv[])
                 QJsonObject msg = messageMap[friendUsername];
                 friendData["last_message"] = msg["last_message"];
                 friendData["last_message_time"] = msg["last_message_time"];
-                qInfo() << "last_message" <<  msg["last_message"] << "last_message_time" << msg["last_message_time"];
             } else {
                 friendData["last_message"] = "";
                 friendData["last_message_time"] = "";
@@ -785,8 +769,7 @@ int main(int argc, char *argv[])
     server.route("/api/getFriendsList", [](const QHttpServerRequest& request) {
         QUrlQuery uquery = request.query();
         auto username = uquery.queryItemValue("username");
-        qInfo() << "Received data: " << username;
-        qInfo() << "Request URL: " << request.url().toString();
+
         if (username.isEmpty())
         {
             return QString(R"({"status":"failed", "code":400, "message":"用户名为空!"})");
@@ -865,8 +848,6 @@ int main(int argc, char *argv[])
                 info["user_age"] = userQuery.value("user_age").toString();
                 info["user_region"] = userQuery.value("user_region").toString();
                 info["avatar"] = userQuery.value("avatar").toString();
-                qInfo() << userQuery.value("uname").toString() << userQuery.value("user_gender").toString() <<userQuery.value("user_age").toString()
-                        << userQuery.value("user_region").toString();
                 userInfoMap[user_name] = info;
             }
         }
@@ -891,8 +872,7 @@ int main(int argc, char *argv[])
     server.route("/api/fetchfriendrequests", [](const QHttpServerRequest& request) {
         QUrlQuery uquery = request.query();
         auto username = uquery.queryItemValue("username");
-        qInfo() << "Received data: " << username;
-        qInfo() << "Request URL: " << request.url().toString();
+
         // 检查用户名是否为空
         if (username.isEmpty()) {
             return QString(R"({"status":"failed", "code":400, "message":"用户名为空!"})");
@@ -961,8 +941,6 @@ int main(int argc, char *argv[])
         QUrlQuery uquery = request.query();
         auto user_name_1 = uquery.queryItemValue("user_name_1");
         auto user_name_2 = uquery.queryItemValue("user_name_2");
-        qInfo() << "Received data: " << user_name_1 << user_name_2;
-        qInfo() << "Request URL: " << request.url().toString();
 
         // 检查用户名是否为空
         if (user_name_1.isEmpty() || user_name_2.isEmpty()) {
@@ -1051,8 +1029,6 @@ int main(int argc, char *argv[])
         QUrlQuery uquery = request.query();
         auto user1 = uquery.queryItemValue("user1");
         auto user2 = uquery.queryItemValue("user2");
-
-        qInfo() << "user1:" << user1 << "user2:" << user2;
 
         if (user1.isEmpty() || user2.isEmpty()) {
             return QString(R"({"status":"failed", "code":400, "message":"用户名不能为空!"})");
@@ -1201,7 +1177,7 @@ int main(int argc, char *argv[])
         // 接收数据
         QObject::connect(clientSocket, &QTcpSocket::readyRead, [clientSocket, &tcpClients]() {
             QByteArray data = clientSocket->readAll();
-            qInfo() << "Received TCP data:" << data;
+
 
             // 解析JSON数据
             QJsonDocument doc = QJsonDocument::fromJson(data);
@@ -1214,6 +1190,8 @@ int main(int argc, char *argv[])
             QString sender = jsonObj["sender"].toString();
             QString receiver = jsonObj["receiver"].toString();
             QString content = jsonObj["content"].toString();
+
+            qInfo() << sender << "向" << receiver << "发送了" << content;
 
             // 保存发送者的套接字信息
             usernameToSocket[sender] = clientSocket;
